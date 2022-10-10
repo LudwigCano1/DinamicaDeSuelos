@@ -7,6 +7,7 @@
 ##
 ###############################################################
 
+pip install plotly_express
 
 import numpy as np
 import math as m
