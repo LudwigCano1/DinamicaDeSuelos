@@ -11,7 +11,7 @@
 import numpy as np
 import math as m
 import streamlit as st
-import plotly as px
+import plotly_express as px
 
 
 st.set_page_config(page_title="S1GdL",page_icon=":cat:")
