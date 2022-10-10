@@ -14,7 +14,7 @@ import streamlit as st
 import plotly_express as px
 
 
-st.set_page_config(page_title="S1GdL",page_icon=":cat:")
+st.set_page_config(page_title="S1GdL",page_icon=":cat:",layout="wide")
 
 #------------------------------------------------------------
 # Definición de funciones para calcular
