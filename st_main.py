@@ -58,7 +58,7 @@ def IntPlot_FAD(beta):
     #plot2 = px.line(x=beta,y=phi_set,labels={"x":"β=ω/ωo","y":"Ángulo de fase ϕ/π"},range_x=[beta[0],beta[-1]],range_y=[0,1])
     plot1.add_scatter(x=beta,y=FAD_set_1,mode="lines",name=f"ξ1 = {x1:.2f}")
     plot1.add_scatter(x=beta,y=FAD_set_2,mode="lines",name=f"ξ2 = {x2:.2f}")
-    st.plotly_chart(plot1)
+    st.plotly_chart(plot1,use_container_width=True)
 
 def IntPlot_phi(beta):
     c1,c2,c3,c4,c5,c6 = st.columns(6,gap="small")
@@ -82,13 +82,11 @@ def IntPlot_phi(beta):
     plot2 = px.line(x=[0],y=[0],labels={"x":"β=ω/ωo","y":"Ángulo de fase ϕ/π"},range_x=[beta[0],beta[-1]],range_y=[0,1])
     plot2.add_scatter(x=beta,y=phi_set_1,mode="lines",name=f"ξ1 = {x1:.2f}",line={"color":color1})
     plot2.add_scatter(x=beta,y=phi_set_2,mode="lines",name=f"ξ2 = {x2:.2f}",line={"color":color2})
-    st.plotly_chart(plot2)
+    st.plotly_chart(plot2,use_container_width=True)
 
 
 
 def Preg_1():
-    with st.container():
-        nnn = st.number_input("prueba",min_value=0.00,max_value=1.00,value=0.05,step=0.01,label_visibility="hidden")
     st.header("1. Vibración Forzada Amortiguada")
     st.subheader("1.1. Descripción del movimiento")
     st.write("La ecuación de movimiento de un sistema amortiguado de un grado de libertad sujeto a una carga armónica es:")
