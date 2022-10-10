@@ -45,10 +45,14 @@ def IntPlot_FAD(beta):
         st.write("Seleccione el valor de ξ1:")
     with c2:
         x1= st.slider("FAD_x1",min_value=1,max_value=100,value=5,label_visibility="hidden")/100
+    with c3:
+        color1 = st.color_picker("C1_FAD","#FF0012",label_visibility="hidden")
     with c4:
         st.write("Seleccione el valor de ξ2:")
     with c5:
         x2= st.slider("FAD_x2",min_value=1,max_value=100,value=15,label_visibility="hidden")/100
+    with c6:
+        color2 = st.color_picker("C2_FAD","#0098FF",label_visibility="hidden")
     FAD_set_1 = []
     FAD_set_2 = []
     for B in beta:
@@ -56,8 +60,8 @@ def IntPlot_FAD(beta):
         FAD_set_2.append(FAD(B,x2))
     plot1 = px.line(x=[0],y=[0],labels={"x":"β=ω/ωo","y":"FAD"},range_x=[beta[0],beta[-1]],range_y=[0,5])
     #plot2 = px.line(x=beta,y=phi_set,labels={"x":"β=ω/ωo","y":"Ángulo de fase ϕ/π"},range_x=[beta[0],beta[-1]],range_y=[0,1])
-    plot1.add_scatter(x=beta,y=FAD_set_1,mode="lines",name=f"ξ1 = {x1:.2f}")
-    plot1.add_scatter(x=beta,y=FAD_set_2,mode="lines",name=f"ξ2 = {x2:.2f}")
+    plot1.add_scatter(x=beta,y=FAD_set_1,mode="lines",name=f"ξ1 = {x1:.2f}",line={"color":color1})
+    plot1.add_scatter(x=beta,y=FAD_set_2,mode="lines",name=f"ξ2 = {x2:.2f}",line={"color":color2})
     st.plotly_chart(plot1,use_container_width=True)
 
 def IntPlot_phi(beta):
