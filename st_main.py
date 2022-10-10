@@ -87,6 +87,8 @@ def IntPlot_phi(beta):
 
 
 def Preg_1():
+    with st.container():
+        nnn = st.number_input("prueba",min_value=0.00,max_value=1.00,value=0.05,step=0.01,label_visibility="hidden")
     st.header("1. Vibración Forzada Amortiguada")
     st.subheader("1.1. Descripción del movimiento")
     st.write("La ecuación de movimiento de un sistema amortiguado de un grado de libertad sujeto a una carga armónica es:")
