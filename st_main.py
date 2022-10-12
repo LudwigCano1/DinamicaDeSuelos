@@ -40,7 +40,8 @@ xi_set = [0.01,0.05,0.1,0.2,0.3,0.4,0.5,0.707,1]
 
 # FUNCIÓN PARA GRAFICAR Beta vs FAD
 def IntPlot_FAD(beta):
-    st.subheader("Comparación de FAD variando el valor de ξ")
+    st.subheader("Variación del Factor de Amplificación Dinámica (FAD)")
+    st.write("A continuación se observa la variación del valor del FAD con respecto a la relación β=Ω/ωo, para valores fijos de ξ.")
     c1,c2,c3,c4,c5,c6 = st.columns([1.5,2,1,1.5,2,1],gap="small")
     with c1: st.write("Seleccione el valor de ξ1:")
     with c2: x1 = st.number_input("FAD_x1",min_value=0.00,max_value=2.00,value=0.05,step=0.01,label_visibility="hidden")
@@ -60,7 +61,8 @@ def IntPlot_FAD(beta):
 
 # FUNCIÓN PARA GRAFICAR Beta vs phi
 def IntPlot_phi(beta):
-    st.subheader("Comparación de ϕ/π variando el valor de ξ")
+    st.subheader("Variación del ángulo de fase (ϕ)")
+    st.write("A continuación se ve la variación del valor del ángulo de fase ϕ con respecto a la relación β=Ω/ωo, para valores fijos de ξ.")
     c1,c2,c3,c4,c5,c6 = st.columns([1.5,2,1,1.5,2,1],gap="small")
     with c1: st.write("Seleccione el valor de ξ1:")
     with c2: x1 = st.number_input("phi_x1",min_value=0.00,max_value=2.00,value=0.05,step=0.01,label_visibility="hidden")
@@ -108,31 +110,44 @@ def Preg_1():
     \dot u_p(t)=&C_3\Omega \cos{\Omega t}-C_4\Omega \sin{\Omega t}\\
     \ddot u_p(t)=&-\Omega^2 C_3 \sin{\Omega t}-\Omega^2 C_4 \cos{\Omega t}
     \end{align}""")
-    st.write("Reemplazando estas ecuaciones en la ecuación de movimiento, y por igualdad de coeficientes, se tiene:")
+    
+    
+    st.write("Reemplazando estas ecuaciones en la ecuación de movimiento y analizando para los casos 1 y 2, se obtienen las ecuaciones (7) y (8) respectivamente.")
+    st.latex(r"""\begin{split}
+    \text{Caso 1: Cuando }& \Omega t = n\pi,\ n=0,1,2,...\\
+    \text{Caso 2: Cuando }& \Omega t = \pi / 1 +n \pi,\ n=0,1,2,...\\
+    \end{split}""")
+    st.latex(r"""
+    \begin{align}
+    C_4 \omega_0^2 - C_4 \Omega^2 + 2 C_3 \Omega \xi \omega = 0\\
+    C_3 \omega_0^2 - C_3 \Omega^2 - 2 C_4 \Omega \xi \omega = 0
+    \end{align}""")
+    st.write("Resolviendo el sistema de ecuaciones se obtiene:")
     st.latex(r"""\begin{align}
     C_3=&\frac{Q_0}{k} \frac{1-\beta^2}{(1-\beta^2)^2+(2\xi\beta)^2}\\
     C_4=&\frac{Q_0}{k} \frac{-2\xi\beta}{(1-\beta^2)^2+(2\xi\beta)^2}
     \end{align}""")
     st.write("donde:")
     st.latex(r"""\beta={\Omega}/{\omega_0}""")
+
     st.write("La respuesta estacionaria también se puede escribir como:")
     st.latex(r"""\begin{split}
     u=&A\sin(\Omega t + \phi)\\
     u=&A\sin(\Omega t)\cos(\phi)+A\cos(\Omega t)\sin(\phi)\\
-    \text{de donde:}\\
     C_3\sin{\Omega t}+C_4\cos{\Omega t}=&[A\cos(\phi)]\sin(\Omega t)+[A\sin(\phi)]\cos(\Omega t)\\
     C_3=&A\cos(\phi)\\
     C_4=&A\sin(\phi)
     \end{split}""")
+
     st.latex(r"""\begin{align}
     A=&\sqrt{C_3^2+C_4^2}=\frac{Q_0}{k} \frac{1}{\sqrt{(1-\beta ^2)^2+(2\xi \beta)^2}}\\
     \phi=&\tan^{-1}\left(\frac{C_4}{C_3}\right)=\tan^{-1}\left(\frac{-2\xi\beta}{1-\beta^2}\right)
     \end{align}""")
 
-
+    st.write("La respuesta del sistema, en términos de desplazamiento, ante una carga dinámica y ante una carga estática de igual \"amplitud\" no es la misma. A la razón entre estos dos términos se le llama Factor de Amplificación Dinámica (FAD).")
 
     st.latex(r"""\begin{equation}
-    FAD=\frac{1}{\sqrt{(1-\beta ^2)^2+(2\xi \beta)^2}}
+    FAD=\frac{A}{Q_0/k}=\frac{1}{\sqrt{(1-\beta ^2)^2+(2\xi \beta)^2}}
     \end{equation}""")
     st.write("---")
 
