@@ -10,7 +10,6 @@
 # Importación de las librerías necesarias
 import numpy as np
 import math as m
-import matplotlib.pyplot as plt
 import streamlit as st
 import plotly_express as px
 
