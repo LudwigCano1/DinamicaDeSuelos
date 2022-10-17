@@ -80,10 +80,11 @@ def IntPlot_phi(beta):
     plot2.add_scatter(x=beta,y=phi_set_2,mode="lines",name=f"ξ2 = {x2:.2f}",line={"color":color2})
     st.plotly_chart(plot2,use_container_width=True)
 
+Tab1,Tab2 = st.tabs(["Problema 1","Problema 2"])
+
 
 # Función para mostrar página 1
-def Preg_1():
-    
+with Tab1:
     # MARCO TEÓRICO SOBRE VIBRACIÓN AMORTIGUADA, Todo el código es para mostrar el texto
     st.header("1. Vibración Forzada Amortiguada")
     st.subheader("1.1. Descripción del movimiento")
@@ -95,15 +96,12 @@ def Preg_1():
     st.latex(r"""\begin{equation}
     \ddot u +2\xi\omega_0 \dot{u}+\omega_0^2 u=\frac{Q_0}{m}\sin{\Omega t}
     \end{equation}""")
-    st.write("donde:")
-    st.latex(r"""\xi=\frac{c}{2m\omega_0} \text{\ \ \ \ \ y\ \ \ \ \ } \omega_0^2=\frac{k}{m}""")
-    st.write("De la ecuación (2) se obtienen las soluciones general y particular:")
+    st.write(r"donde $\xi=\frac{c}{2m\omega_0}$ y $\omega_0^2=\frac{k}{m}$. De la ecuación (2) se obtienen las soluciones general y particular:")
     st.latex(r"""\begin{align}
     u_c(t)=&e^{-\xi \omega_0 t}(C_1\sin{\omega_d t}+C_2\cos{\omega_d t})\\
     u_p(t)=&C_3\sin{\Omega t}+C_4\cos{\Omega t}
     \end{align}""")
-    st.write("Siendo la frencuencia circular de la vibración amortiguada:")
-    st.latex(r"""\omega_d=\omega_0\sqrt{1-\xi^2}""")
+    st.write(r"siendo la frencuencia circular de la vibración amortiguada: $\omega_d=\omega_0\sqrt{1-\xi^2}$")
     st.write("Debido a la disminución de la amplitud de la solucion general, lo que predominará será la solución particular, es decir, la respuesta a la fuerza armónica externa.")
     st.write("La velocidad y la aceleración correspondientes son:")
     st.latex(r"""\begin{align}
@@ -115,7 +113,7 @@ def Preg_1():
     st.write("Reemplazando estas ecuaciones en la ecuación de movimiento y analizando para los casos 1 y 2, se obtienen las ecuaciones (7) y (8) respectivamente.")
     st.latex(r"""\begin{split}
     \text{Caso 1: Cuando }& \Omega t = n\pi,\ n=0,1,2,...\\
-    \text{Caso 2: Cuando }& \Omega t = \pi / 1 +n \pi,\ n=0,1,2,...\\
+    \text{Caso 2: Cuando }& \Omega t = \pi / 2 +n \pi,\ n=0,1,2,...\\
     \end{split}""")
     st.latex(r"""
     \begin{align}
@@ -127,8 +125,7 @@ def Preg_1():
     C_3=&\frac{Q_0}{k} \frac{1-\beta^2}{(1-\beta^2)^2+(2\xi\beta)^2}\\
     C_4=&\frac{Q_0}{k} \frac{-2\xi\beta}{(1-\beta^2)^2+(2\xi\beta)^2}
     \end{align}""")
-    st.write("donde:")
-    st.latex(r"""\beta={\Omega}/{\omega_0}""")
+    st.write(r"donde: $\beta={\Omega}/{\omega_0}$.")
 
     st.write("La respuesta estacionaria también se puede escribir como:")
     st.latex(r"""\begin{split}
@@ -144,7 +141,8 @@ def Preg_1():
     \phi=&\tan^{-1}\left(\frac{C_4}{C_3}\right)=\tan^{-1}\left(\frac{-2\xi\beta}{1-\beta^2}\right)
     \end{align}""")
 
-    st.write("La respuesta del sistema, en términos de desplazamiento, ante una carga dinámica y ante una carga estática de igual \"amplitud\" no es la misma. A la razón entre estos dos términos se le llama Factor de Amplificación Dinámica (FAD).")
+    st.subheader("1.2. Factor de Amplificación Dinámica (FAD)")
+    st.write("La respuesta del sistema, en términos de desplazamiento, ante una carga dinámica y ante una carga estática de igual \"amplitud\", no es la misma. A la razón entre estos dos términos se le llama Factor de Amplificación Dinámica (FAD).")
 
     st.latex(r"""\begin{equation}
     FAD=\frac{A}{Q_0/k}=\frac{1}{\sqrt{(1-\beta ^2)^2+(2\xi \beta)^2}}
@@ -160,7 +158,7 @@ def Preg_1():
 
 
 # Función para mostrar la página 2
-def Preg_2():
+with Tab2:
     st.header("Vibración Amortiguada con Movimiento en la Base")
 
 
@@ -169,14 +167,3 @@ st.sidebar.title("Sistemas de 1 Grado de Libertad")
 st.sidebar.write("**Curso:** Dinámica de Suelos")
 st.sidebar.write("**Ciclo:** 2022-2")
 st.sidebar.write("**Desarrollado por:** Cano Pacheco Ludwig Luiggi")
-st.sidebar.write("")
-preguntas = st.sidebar.radio("Preguntas",options=["P1: Vibración Forzada Amortiguada","P2: Vibración Amortiguada con Movimiento en la Base"])
-
-
-
-# Ejecución de la app web
-if preguntas == "P1: Vibración Forzada Amortiguada":
-    Preg_1()
-else:
-    Preg_2()
-#-----------------------------------------------------------
